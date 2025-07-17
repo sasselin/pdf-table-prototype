@@ -2,11 +2,11 @@ import { serve } from "bun";
 import puppeteer from "puppeteer";
 
 serve({
-  port: 3000,
+  port: 80,
   async fetch(req) {
     const url = new URL(req.url);
 
-    if (url.pathname === "/pdf") {
+    if (url.pathname === "/") {
       const browser = await puppeteer.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],

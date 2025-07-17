@@ -1,5 +1,5 @@
 # Étape 1 : Utiliser une image Bun officielle légère
-FROM oven/bun:1.1.8-slim
+FROM oven/bun:1.2.18-slim
 
 # Installer dépendances nécessaires à Puppeteer pour Chromium
 RUN apt-get update && apt-get install -y \
@@ -37,7 +37,7 @@ WORKDIR /app
 COPY . .
 
 # Installer les dépendances avec Bun
-RUN bun install
+RUN bun i
 
 # Lancer le script avec Bun
-CMD ["bun", "generate.ts"]
+CMD ["bun", "start"]

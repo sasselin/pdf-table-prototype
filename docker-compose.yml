@@ -1,10 +1,8 @@
 services:
-  server:
+  app:
+    command: ["/bin/sh", "-c", "bun i && bun start"]
     build: .
-    container_name: pdf-server
     ports:
-      - "3000:3000"
-    working_dir: /app
-    command: bun server.ts
+      - "80:80"
     volumes:
       - .:/app
