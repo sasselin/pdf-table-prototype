@@ -39,6 +39,10 @@
         padding: 6px;
         background-color: #f0f0f0;
       }
+      .group {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
       .gray {
         background-color: #f9f9f9;
       }
@@ -60,9 +64,11 @@
         Rapport généré le 18 avril à 10:38 par Utilisateur ABC12345
       </div>
 
-      <div class="section-title">
-        Groupe 101 – Service 1 – Pavillon Principal
-      </div>
+      <!-- Groupes 101 à 103 -->
+      <!-- Répété dynamiquement si besoin -->
+
+      <!-- Groupe 101 -->
+      <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
       <table>
         <thead>
           <tr>
@@ -87,40 +93,445 @@
           </tr>
         </thead>
         <tbody>
+          <!-- 15 élèves -->
+          <!-- Répéter ce bloc pour chaque élève -->
+          <!-- Exemple : -->
           <tr>
-            <td>Clarkson, Zora</td>
+            <td>Élève 1</td>
             <td>1</td>
             <td>0</td>
             <td>1</td>
-            <td colspan="3" class="text-left">Burger de bœuf, Banane</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td colspan="3">-</td>
-            <td>1</td>
+            <td colspan="3" class="text-left">Repas 1A</td>
             <td>0</td>
             <td>1</td>
-            <td colspan="3" class="text-left">Spaghetti, Orange</td>
+            <td>1</td>
+            <td colspan="3" class="text-left">Repas 1B</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td colspan="3" class="text-left">Repas 1C</td>
           </tr>
+          <!-- ... répéter jusqu'à Élève 15 -->
         </tbody>
         <tfoot>
           <tr class="gray">
             <td><strong>Total groupe</strong></td>
-            <td>2</td>
-            <td>0</td>
-            <td>2</td>
+            <td>15</td>
+            <td>5</td>
+            <td>15</td>
             <td colspan="3">-</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td>10</td>
+            <td>5</td>
+            <td>10</td>
             <td colspan="3">-</td>
-            <td>2</td>
-            <td>1</td>
-            <td>2</td>
+            <td>12</td>
+            <td>3</td>
+            <td>14</td>
             <td colspan="3">-</td>
           </tr>
         </tfoot>
       </table>
+
+      <!-- Groupe 102 -->
+      <div class="group">
+        <div class="section-title">Groupe 102 – Service 2 – Pavillon 2</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 15 élèves -->
+            <!-- Répéter ce bloc pour chaque élève -->
+            <!-- Exemple : -->
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1A</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1B</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas 1C</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève 15 -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>5</td>
+              <td>10</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Groupe 103 -->
+      <div class="group">
+        <div class="section-title">Groupe 103 – Service 3 – Pavillon 3</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 15 élèves -->
+            <!-- Répéter ce bloc pour chaque élève -->
+            <!-- Exemple : -->
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1A</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1B</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas 1C</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève 15 -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>5</td>
+              <td>10</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Groupe 104 -->
+      <div class="group">
+        <div class="section-title">Groupe 104 – Service 3 – Pavillon 3</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 15 élèves -->
+            <!-- Répéter ce bloc pour chaque élève -->
+            <!-- Exemple : -->
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1A</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1B</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas 1C</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève 15 -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>5</td>
+              <td>10</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Groupe 105 -->
+      <div class="group">
+        <div class="section-title">Groupe 105 – Service 3 – Pavillon 3</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 15 élèves -->
+            <!-- Répéter ce bloc pour chaque élève -->
+            <!-- Exemple : -->
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1A</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1B</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas 1C</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève 15 -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>5</td>
+              <td>10</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- Groupe 106 -->
+      <div class="group">
+        <div class="section-title">Groupe 106 – Service 3 – Pavillon 3</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 15 élèves -->
+            <!-- Répéter ce bloc pour chaque élève -->
+            <!-- Exemple : -->
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1A</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1B</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas 1C</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève 15 -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>5</td>
+              <td>10</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Groupe 107 -->
+      <div class="group">
+        <div class="section-title">Groupe 107 – Service 3 – Pavillon 3</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 15 élèves -->
+            <!-- Répéter ce bloc pour chaque élève -->
+            <!-- Exemple : -->
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1A</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas 1B</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas 1C</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève 15 -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>5</td>
+              <td>10</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   </body>
 </html>
