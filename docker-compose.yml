@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  pdf-generator:
+    build: .
+    container_name: pdf-generator
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: bun generate.ts
+
+  server:
+    build: .
+    container_name: pdf-server
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    command: bun server.ts

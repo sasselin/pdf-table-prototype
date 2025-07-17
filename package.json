@@ -1,0 +1,14 @@
+{
+  "name": "distribution-pdf-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "bun generate.ts",
+    "server": "bun server.ts"
+  },
+  "dependencies": {
+    "@types/bun": "^1.2.18",
+    "puppeteer": "^22.0.0"
+  },
+  "devDependencies": {}
+}
