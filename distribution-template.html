@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <title>Rapport de Distribution</title>
     <style>
+      @page {
+        margin: 20mm 10mm;
+      }
       body {
         font-family: Arial, sans-serif;
         font-size: 10px;
@@ -11,7 +14,7 @@
         padding: 0;
       }
       .page {
-        padding: 20mm;
+        border: 1px dashed red;
         page-break-after: always;
       }
       h1 {
@@ -42,6 +45,7 @@
       .group {
         page-break-inside: avoid;
         break-inside: avoid;
+        border: 1px dashed green;
       }
       .gray {
         background-color: #f9f9f9;
@@ -51,6 +55,10 @@
       }
       .text-left {
         text-align: left;
+      }
+      .vertical-text {
+        writing-mode: vertical-rl; /* ou vertical-lr */
+        transform: rotate(180deg); /* utile pour inverser si besoin */
       }
     </style>
   </head>
@@ -64,77 +72,10 @@
         Rapport généré le 18 avril à 10:38 par Utilisateur ABC12345
       </div>
 
-      <!-- Groupes 101 à 103 -->
-      <!-- Répété dynamiquement si besoin -->
-
-      <!-- Groupe 101 -->
-      <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
-      <table>
-        <thead>
-          <tr>
-            <th rowspan="2">Élève</th>
-            <th colspan="6">Lundi 21 avril</th>
-            <th colspan="6">Mardi 22 avril</th>
-            <th colspan="6">Mercredi 23 avril</th>
-          </tr>
-          <tr>
-            <th>Plat</th>
-            <th>Végé</th>
-            <th>Dessert</th>
-            <th colspan="3">Détails</th>
-            <th>Plat</th>
-            <th>Végé</th>
-            <th>Dessert</th>
-            <th colspan="3">Détails</th>
-            <th>Plat</th>
-            <th>Végé</th>
-            <th>Dessert</th>
-            <th colspan="3">Détails</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- 15 élèves -->
-          <!-- Répéter ce bloc pour chaque élève -->
-          <!-- Exemple : -->
-          <tr>
-            <td>Élève 1</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1</td>
-            <td colspan="3" class="text-left">Repas 1A</td>
-            <td>0</td>
-            <td>1</td>
-            <td>1</td>
-            <td colspan="3" class="text-left">Repas 1B</td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
-            <td colspan="3" class="text-left">Repas 1C</td>
-          </tr>
-          <!-- ... répéter jusqu'à Élève 15 -->
-        </tbody>
-        <tfoot>
-          <tr class="gray">
-            <td><strong>Total groupe</strong></td>
-            <td>15</td>
-            <td>5</td>
-            <td>15</td>
-            <td colspan="3">-</td>
-            <td>10</td>
-            <td>5</td>
-            <td>10</td>
-            <td colspan="3">-</td>
-            <td>12</td>
-            <td>3</td>
-            <td>14</td>
-            <td colspan="3">-</td>
-          </tr>
-        </tfoot>
-      </table>
-
-      <!-- Groupe 102 -->
+      <!-- Répéter dynamiquement pour chaque groupe -->
+      <!-- Exemple pour Groupe 101 -->
       <div class="group">
-        <div class="section-title">Groupe 102 – Service 2 – Pavillon 2</div>
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
         <table>
           <thead>
             <tr>
@@ -142,8 +83,18 @@
               <th colspan="6">Lundi 21 avril</th>
               <th colspan="6">Mardi 22 avril</th>
               <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
             </tr>
             <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
               <th>Plat</th>
               <th>Végé</th>
               <th>Dessert</th>
@@ -159,25 +110,30 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 15 élèves -->
-            <!-- Répéter ce bloc pour chaque élève -->
-            <!-- Exemple : -->
             <tr>
               <td>Élève 1</td>
               <td>1</td>
               <td>0</td>
               <td>1</td>
-              <td colspan="3" class="text-left">Repas 1A</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td colspan="3" class="text-left">Repas 1B</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
               <td>1</td>
               <td>0</td>
               <td>0</td>
-              <td colspan="3" class="text-left">Repas 1C</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
             </tr>
-            <!-- ... répéter jusqu'à Élève 15 -->
+            <!-- ... répéter jusqu'à Élève N -->
           </tbody>
           <tfoot>
             <tr class="gray">
@@ -186,9 +142,17 @@
               <td>5</td>
               <td>15</td>
               <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
               <td>10</td>
-              <td>5</td>
-              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
               <td colspan="3">-</td>
               <td>12</td>
               <td>3</td>
@@ -199,52 +163,66 @@
         </table>
       </div>
 
-      <!-- Groupe 103 -->
       <div class="group">
-        <div class="section-title">Groupe 103 – Service 3 – Pavillon 3</div>
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
         <table>
           <thead>
             <tr>
-              <th rowspan="2">Élève</th>
-              <th colspan="6">Lundi 21 avril</th>
-              <th colspan="6">Mardi 22 avril</th>
-              <th colspan="6">Mercredi 23 avril</th>
+              <th rowspan="2" class="vertical-text">Élève</th>
+              <th colspan="6" class="vertical-text">Lundi 21 avril</th>
+              <th colspan="6" class="vertical-text">Mardi 22 avril</th>
+              <th colspan="6" class="vertical-text">Mercredi 23 avril</th>
+              <th colspan="6" class="vertical-text">Jeudi 24 avril</th>
+              <th colspan="6" class="vertical-text">Vendredi 25 avril</th>
             </tr>
             <tr>
-              <th>Plat</th>
-              <th>Végé</th>
-              <th>Dessert</th>
-              <th colspan="3">Détails</th>
-              <th>Plat</th>
-              <th>Végé</th>
-              <th>Dessert</th>
-              <th colspan="3">Détails</th>
-              <th>Plat</th>
-              <th>Végé</th>
-              <th>Dessert</th>
-              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3" class="vertical-text">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3" class="vertical-text">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3" class="vertical-text">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3" class="vertical-text">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3" class="vertical-text">Détails</th>
             </tr>
           </thead>
           <tbody>
-            <!-- 15 élèves -->
-            <!-- Répéter ce bloc pour chaque élève -->
-            <!-- Exemple : -->
             <tr>
               <td>Élève 1</td>
               <td>1</td>
               <td>0</td>
               <td>1</td>
-              <td colspan="3" class="text-left">Repas 1A</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td colspan="3" class="text-left">Repas 1B</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
               <td>1</td>
               <td>0</td>
               <td>0</td>
-              <td colspan="3" class="text-left">Repas 1C</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
             </tr>
-            <!-- ... répéter jusqu'à Élève 15 -->
+            <!-- ... répéter jusqu'à Élève N -->
           </tbody>
           <tfoot>
             <tr class="gray">
@@ -253,9 +231,17 @@
               <td>5</td>
               <td>15</td>
               <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
               <td>10</td>
-              <td>5</td>
-              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
               <td colspan="3">-</td>
               <td>12</td>
               <td>3</td>
@@ -266,9 +252,8 @@
         </table>
       </div>
 
-      <!-- Groupe 104 -->
       <div class="group">
-        <div class="section-title">Groupe 104 – Service 3 – Pavillon 3</div>
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
         <table>
           <thead>
             <tr>
@@ -276,8 +261,370 @@
               <th colspan="6">Lundi 21 avril</th>
               <th colspan="6">Mardi 22 avril</th>
               <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
             </tr>
             <tr>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
               <th>Plat</th>
               <th>Végé</th>
               <th>Dessert</th>
@@ -293,25 +640,30 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 15 élèves -->
-            <!-- Répéter ce bloc pour chaque élève -->
-            <!-- Exemple : -->
             <tr>
               <td>Élève 1</td>
               <td>1</td>
               <td>0</td>
               <td>1</td>
-              <td colspan="3" class="text-left">Repas 1A</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td colspan="3" class="text-left">Repas 1B</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
               <td>1</td>
               <td>0</td>
               <td>0</td>
-              <td colspan="3" class="text-left">Repas 1C</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
             </tr>
-            <!-- ... répéter jusqu'à Élève 15 -->
+            <!-- ... répéter jusqu'à Élève N -->
           </tbody>
           <tfoot>
             <tr class="gray">
@@ -320,9 +672,17 @@
               <td>5</td>
               <td>15</td>
               <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
               <td>10</td>
-              <td>5</td>
-              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
               <td colspan="3">-</td>
               <td>12</td>
               <td>3</td>
@@ -333,9 +693,8 @@
         </table>
       </div>
 
-      <!-- Groupe 105 -->
       <div class="group">
-        <div class="section-title">Groupe 105 – Service 3 – Pavillon 3</div>
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
         <table>
           <thead>
             <tr>
@@ -343,8 +702,18 @@
               <th colspan="6">Lundi 21 avril</th>
               <th colspan="6">Mardi 22 avril</th>
               <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
             </tr>
             <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
               <th>Plat</th>
               <th>Végé</th>
               <th>Dessert</th>
@@ -360,25 +729,30 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 15 élèves -->
-            <!-- Répéter ce bloc pour chaque élève -->
-            <!-- Exemple : -->
             <tr>
               <td>Élève 1</td>
               <td>1</td>
               <td>0</td>
               <td>1</td>
-              <td colspan="3" class="text-left">Repas 1A</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td colspan="3" class="text-left">Repas 1B</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
               <td>1</td>
               <td>0</td>
               <td>0</td>
-              <td colspan="3" class="text-left">Repas 1C</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
             </tr>
-            <!-- ... répéter jusqu'à Élève 15 -->
+            <!-- ... répéter jusqu'à Élève N -->
           </tbody>
           <tfoot>
             <tr class="gray">
@@ -387,75 +761,17 @@
               <td>5</td>
               <td>15</td>
               <td colspan="3">-</td>
-              <td>10</td>
-              <td>5</td>
-              <td>10</td>
-              <td colspan="3">-</td>
-              <td>12</td>
-              <td>3</td>
               <td>14</td>
-              <td colspan="3">-</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <!-- Groupe 106 -->
-      <div class="group">
-        <div class="section-title">Groupe 106 – Service 3 – Pavillon 3</div>
-        <table>
-          <thead>
-            <tr>
-              <th rowspan="2">Élève</th>
-              <th colspan="6">Lundi 21 avril</th>
-              <th colspan="6">Mardi 22 avril</th>
-              <th colspan="6">Mercredi 23 avril</th>
-            </tr>
-            <tr>
-              <th>Plat</th>
-              <th>Végé</th>
-              <th>Dessert</th>
-              <th colspan="3">Détails</th>
-              <th>Plat</th>
-              <th>Végé</th>
-              <th>Dessert</th>
-              <th colspan="3">Détails</th>
-              <th>Plat</th>
-              <th>Végé</th>
-              <th>Dessert</th>
-              <th colspan="3">Détails</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- 15 élèves -->
-            <!-- Répéter ce bloc pour chaque élève -->
-            <!-- Exemple : -->
-            <tr>
-              <td>Élève 1</td>
               <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td colspan="3" class="text-left">Repas 1A</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td colspan="3" class="text-left">Repas 1B</td>
-              <td>1</td>
-              <td>0</td>
-              <td>0</td>
-              <td colspan="3" class="text-left">Repas 1C</td>
-            </tr>
-            <!-- ... répéter jusqu'à Élève 15 -->
-          </tbody>
-          <tfoot>
-            <tr class="gray">
-              <td><strong>Total groupe</strong></td>
-              <td>15</td>
-              <td>5</td>
-              <td>15</td>
+              <td>12</td>
               <td colspan="3">-</td>
               <td>10</td>
-              <td>5</td>
-              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
               <td colspan="3">-</td>
               <td>12</td>
               <td>3</td>
@@ -466,9 +782,8 @@
         </table>
       </div>
 
-      <!-- Groupe 107 -->
       <div class="group">
-        <div class="section-title">Groupe 107 – Service 3 – Pavillon 3</div>
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
         <table>
           <thead>
             <tr>
@@ -476,8 +791,18 @@
               <th colspan="6">Lundi 21 avril</th>
               <th colspan="6">Mardi 22 avril</th>
               <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
             </tr>
             <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
               <th>Plat</th>
               <th>Végé</th>
               <th>Dessert</th>
@@ -493,25 +818,30 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 15 élèves -->
-            <!-- Répéter ce bloc pour chaque élève -->
-            <!-- Exemple : -->
             <tr>
               <td>Élève 1</td>
               <td>1</td>
               <td>0</td>
               <td>1</td>
-              <td colspan="3" class="text-left">Repas 1A</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td colspan="3" class="text-left">Repas 1B</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
               <td>1</td>
               <td>0</td>
               <td>0</td>
-              <td colspan="3" class="text-left">Repas 1C</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
             </tr>
-            <!-- ... répéter jusqu'à Élève 15 -->
+            <!-- ... répéter jusqu'à Élève N -->
           </tbody>
           <tfoot>
             <tr class="gray">
@@ -520,9 +850,551 @@
               <td>5</td>
               <td>15</td>
               <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
               <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
               <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
               <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+              <th class="vertical-text">Plat</th>
+              <th class="vertical-text">Végé</th>
+              <th class="vertical-text">Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
+              <td colspan="3">-</td>
+              <td>12</td>
+              <td>3</td>
+              <td>14</td>
+              <td colspan="3">-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="group">
+        <div class="section-title">Groupe 101 – Service 1 – Pavillon 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Élève</th>
+              <th colspan="6">Lundi 21 avril</th>
+              <th colspan="6">Mardi 22 avril</th>
+              <th colspan="6">Mercredi 23 avril</th>
+              <th colspan="6">Jeudi 24 avril</th>
+              <th colspan="6">Vendredi 25 avril</th>
+            </tr>
+            <tr>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+              <th>Plat</th>
+              <th>Végé</th>
+              <th>Dessert</th>
+              <th colspan="3">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Élève 1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Lundi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Mardi</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Mercredi</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td colspan="3" class="text-left">Repas Jeudi</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td colspan="3" class="text-left">Repas Vendredi</td>
+            </tr>
+            <!-- ... répéter jusqu'à Élève N -->
+          </tbody>
+          <tfoot>
+            <tr class="gray">
+              <td><strong>Total groupe</strong></td>
+              <td>15</td>
+              <td>5</td>
+              <td>15</td>
+              <td colspan="3">-</td>
+              <td>14</td>
+              <td>1</td>
+              <td>12</td>
+              <td colspan="3">-</td>
+              <td>10</td>
+              <td>4</td>
+              <td>11</td>
+              <td colspan="3">-</td>
+              <td>11</td>
+              <td>2</td>
+              <td>9</td>
               <td colspan="3">-</td>
               <td>12</td>
               <td>3</td>
