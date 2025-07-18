@@ -6,7 +6,15 @@ serve({
   async fetch(req) {
     const url = new URL(req.url);
 
+    let templateFile: string | null = null;
+
     if (url.pathname === "/") {
+      templateFile = "./distribution-template.html";
+    } else if (url.pathname === "/with-header") {
+      templateFile = "./distribution-template-with-header.html";
+    }
+
+    if (templateFile) {
       const browser = await puppeteer.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -14,7 +22,7 @@ serve({
       });
 
       const page = await browser.newPage();
-      const html = await Bun.file("./distribution-template.html").text();
+      const html = await Bun.file(templateFile).text();
       await page.setContent(html, { waitUntil: "networkidle0" });
 
       const pdfBuffer = await page.pdf({
