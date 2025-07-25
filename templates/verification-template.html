@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF‑8" />
+        <title>Distribution par Groupe / Service / Bâtiment</title>
+        <style>
+            @page {
+                size: A4;
+                margin: 8mm;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                font-size: 8pt;
+                color: #222;
+            }
+            h2 {
+                margin: 12px 0 4px;
+                font-size: 12pt;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed;
+                margin-bottom: 16px;
+            }
+            th,
+            td {
+                border: 1px solid #444;
+                padding: 4px;
+                text-align: center;
+                vertical-align: middle;
+            }
+            thead th {
+                background: #ddd;
+                font-weight: bold;
+                font-size: 8pt;
+                text-align: center;
+                vertical-align: bottom; /* Aligns the text block to the bottom of the cell */
+            }
+            tbody tr:nth-child(even) td {
+                background: #f7f7f7;
+            }
+
+            /* Infos column */
+            .col-info {
+                background: #fafafa;
+                text-align: left;
+                padding: 6px;
+                font-weight: 500;
+                white-space: normal;
+                word-break: break-word;
+                overflow-wrap: anywhere;
+                width: 220px;
+            }
+
+            /* Meal names vertical */
+            .meal-name {
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                overflow-wrap: break-word;
+                display: inline-block;
+                max-height: 150px;
+                padding: 4px 2px;
+                font-size: 7pt;
+            }
+
+            /* Code row styling */
+            .meal-code {
+                background: #eee;
+                font-size: 8pt;
+            }
+
+            /* Grand total column */
+            th.grand-total,
+            td.grand-total {
+                background: #ccc !important;
+                font-weight: bold;
+            }
+
+            /* Footer rows */
+            tfoot tr.total-building td {
+                background: #ececec;
+            }
+            tfoot tr.total-service td {
+                background: #d1d1d1;
+            }
+            tfoot tr.grand-total-row td {
+                background: #a8a8a8;
+                color: #fff;
+            }
+            tfoot tr.grand-total-row td.col-info {
+                background: #a8a8a8;
+                color: #fff;
+            }
+            tfoot td strong {
+                font-weight: bold;
+            }
+            /* This rule is more specific and will override the row colors for the final column */
+            tfoot tr td.grand-total {
+                background: #ccc; /* The desired gray for the whole column */
+                color: #222; /* Reset text color to black */
+                font-weight: bold;
+            }
+
+            /* Report Header */
+            .report-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-bottom: 12px;
+                border-top: 3px solid #444;
+                padding-top: 10px;
+                padding-bottom: 6px;
+            }
+            .report-info h1 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 1.2;
+            }
+            .report-week {
+                margin: 2px 0 0;
+                font-size: 10px;
+                color: #555;
+            }
+            .report-meta {
+                text-align: right;
+                font-size: 9px;
+                color: #555;
+            }
+            .report-meta p {
+                margin: 0;
+                line-height: 1.2;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="report-header">
+            <div class="report-info">
+                <h1>Rapport de Vérification École Hubert-Perron</h1>
+                <p class="report-week">
+                    Rapport de distribution semaine
+                    <strong>du 21 au 25 avril 2025</strong>
+                </p>
+            </div>
+            <div class="report-meta">
+                <p>Rapport généré le 24 juillet 2025 à 14:35</p>
+                <p>Utilisateur : <strong>ABC12345</strong></p>
+            </div>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="3" class="col-info">
+                        Infos<br /><small>(Groupe — Service — Bâtiment)</small>
+                    </th>
+                    <th colspan="3">Lundi 21 avril</th>
+                    <th colspan="3">Mardi 22 avril</th>
+                    <th colspan="3">Mercredi 23 avril</th>
+                    <th colspan="3">Jeudi 24 avril</th>
+                    <th colspan="3">Vendredi 25 avril</th>
+                    <th rowspan="3" class="grand-total">Total</th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="meal-name">
+                            Macaroni au fromage multigrains extra-luxe
+                        </div>
+                    </th>
+                    <th>
+                        <div class="meal-name">
+                            Salade de patates aux herbes
+                        </div>
+                    </th>
+                    <th>
+                        <div class="meal-name">Omelette et mini crêpes</div>
+                    </th>
+                    <th><div class="meal-name">Quiche végétarienne</div></th>
+                    <th><div class="meal-name">Assiette repas poulet</div></th>
+                    <th><div class="meal-name">Mini crêpes chocolat</div></th>
+                    <th><div class="meal-name">Burger façon naan</div></th>
+                    <th><div class="meal-name">Tofu Général Tao</div></th>
+                    <th><div class="meal-name">Salade de kale</div></th>
+                    <th><div class="meal-name">Boulettes suédoises</div></th>
+                    <th><div class="meal-name">Burrito haricots noirs</div></th>
+                    <th><div class="meal-name">Omelette et crêpes</div></th>
+                    <th><div class="meal-name">Hamburger helper</div></th>
+                    <th><div class="meal-name">Assiette quinoa</div></th>
+                    <th><div class="meal-name">Mini crêpes érable</div></th>
+                </tr>
+                <tr>
+                    <th class="meal-code">D</th>
+                    <th class="meal-code">E</th>
+                    <th class="meal-code">F</th>
+                    <th class="meal-code">D</th>
+                    <th class="meal-code">E</th>
+                    <th class="meal-code">F</th>
+                    <th class="meal-code">D</th>
+                    <th class="meal-code">E</th>
+                    <th class="meal-code">F</th>
+                    <th class="meal-code">D</th>
+                    <th class="meal-code">E</th>
+                    <th class="meal-code">F</th>
+                    <th class="meal-code">D</th>
+                    <th class="meal-code">E</th>
+                    <th class="meal-code">F</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-info">
+                        <strong>Service 1</strong> 2e 201‑202‑206<br />
+                        Porte Beauregard
+                    </td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td class="grand-total">21</td>
+                </tr>
+                <tr>
+                    <td class="col-info">
+                        <strong>Service 2</strong> 2e 201‑202 <br />
+                        Porte Beauregard
+                    </td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td class="grand-total">16</td>
+                </tr>
+                <!-- … autres lignes … -->
+            </tbody>
+            <tfoot>
+                <tr class="total-building">
+                    <td class="col-info">
+                        <strong>Total Porte Préfontaine</strong>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>20</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>22</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>23</td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>7</td>
+                    <td class="grand-total"><strong>136</strong></td>
+                </tr>
+                <tr>
+                    <td class="col-info">
+                        <strong>Service 2</strong> 2e 201‑202<br />
+                        Porte Beauregard
+                    </td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td class="grand-total">16</td>
+                </tr>
+                <tr class="total-building">
+                    <td class="col-info">
+                        <strong>Total Porte Préfontaine</strong>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>20</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>22</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>23</td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>7</td>
+                    <td class="grand-total"><strong>136</strong></td>
+                </tr>
+                <tr class="total-service">
+                    <td class="col-info">
+                        <strong>Total Groupe Service 1</strong>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>50</td>
+                    <td>12</td>
+                    <td>8</td>
+                    <td>7</td>
+                    <td>58</td>
+                    <td>3</td>
+                    <td>7</td>
+                    <td>9</td>
+                    <td>56</td>
+                    <td>3</td>
+                    <td>6</td>
+                    <td>13</td>
+                    <td class="grand-total"><strong>321</strong></td>
+                </tr>
+                <tr class="grand-total-row">
+                    <td class="col-info"><strong>Grand Total</strong></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>50</td>
+                    <td>12</td>
+                    <td>23</td>
+                    <td>7</td>
+                    <td>59</td>
+                    <td>3</td>
+                    <td>7</td>
+                    <td>9</td>
+                    <td>57</td>
+                    <td>3</td>
+                    <td>6</td>
+                    <td>13</td>
+                    <td class="grand-total"><strong>339</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "bun server.ts"
+    "start": "bun --hot server.ts"
   },
   "dependencies": {
     "@types/bun": "^1.2.18",

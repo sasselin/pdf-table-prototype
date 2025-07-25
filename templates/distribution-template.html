@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Commandes par personne avec dessert</title>
+        <style>
+            @page {
+                size: A4 landscape;
+                margin: 8mm;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                font-size: 8pt;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed;
+            }
+
+            .page {
+                page-break-after: always;
+            }
+
+            th,
+            td {
+                border: 1px solid #333;
+                padding: 4px;
+                text-align: center;
+                vertical-align: top;
+                overflow-wrap: anywhere;
+            }
+            thead th {
+                background: #eee;
+                font-weight: bold;
+            }
+            tbody tr:nth-child(even) td {
+                background: #fafafa;
+            }
+            .name-col {
+                width: 140px;
+                text-align: left;
+            }
+            .group-col {
+                width: 120px;
+                text-align: left;
+            }
+            .cell-meal {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 2px;
+            }
+            .cell-dessert {
+                font-size: 0.85em;
+                color: #333;
+            }
+            .report-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-bottom: 12px;
+                border-top: 3px solid #444;
+                padding-top: 10px;
+                padding-bottom: 6px;
+            }
+
+            .report-info h1 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 1.2;
+            }
+
+            .report-week {
+                margin: 2px 0 0;
+                font-size: 10px;
+                color: #555;
+            }
+
+            .report-meta {
+                text-align: right;
+                font-size: 9px;
+                color: #555;
+            }
+
+            .report-meta p {
+                margin: 0;
+                line-height: 1.2;
+            }
+
+            .tag {
+                border: 1px solid black;
+                border-radius: 99px;
+                background-color: lightgoldenrodyellow;
+            }
+            .summary-section {
+                margin-top: 10px;
+                /* border: 1px solid #aaa;
+                padding: 8px;
+                border-radius: 4px; */
+            }
+            .summary-section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 6px;
+                /* border-bottom: 1px solid #aaa; */
+                padding-bottom: 2px;
+            }
+            .summary-section-header h2 {
+                font-size: 10pt;
+                margin: 0;
+                font-weight: 500;
+            }
+            .summary-section-header .service-tag {
+                font-size: 9pt;
+                color: #333;
+                background: #eef;
+                padding: 2px 6px;
+                border-radius: 4px;
+                /* border: 1px solid #ccd; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <header class="report-header">
+                <div class="report-info">
+                    <h1>Groupe 101 — Service 1</h1>
+                    <p class="report-week">
+                        Rapport de distribution semaine
+                        <strong>du 21 au 25 avril 2025</strong>
+                    </p>
+                </div>
+                <div class="report-meta">
+                    <p>Rapport généré le 18 avril 2025 à 10 :38</p>
+                    <p>Utilisateur : <strong>ABC12345</strong></p>
+                </div>
+            </header>
+            <p
+                title="Attention : données incomplètes"
+                style="color: #b00; font-size: 10px; vertical-align: middle"
+            >
+                &#9888; Incomplet, des commandes peuvent encore être effectués
+                dans les journées identifiées.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="name-col">Nom</th>
+                        <!-- <th class="group-col">Groupe / Service</th> -->
+                        <th>Lundi 21 avril</th>
+                        <th>Mardi 22 avril</th>
+                        <th>Mercredi 23 avril</th>
+                        <th>Jeudi 24 avril</th>
+                        <th>
+                            Vendredi 25 avril
+                            <span
+                                title="Attention : données incomplètes"
+                                style="
+                                    color: #b00;
+                                    font-size: 9px;
+                                    vertical-align: middle;
+                                "
+                            >
+                                &#9888; incomplet
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Jasper Bichard -->
+                    <tr>
+                        <td class="name-col">Jasper Bichard</td>
+                        <!-- <td class="group-col">Groupe 101 – Service 1</td> -->
+                        <td>
+                            <span class="cell-meal">—</span>
+                            <span class="cell-dessert">—</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal tag">PORTION PLUS</span>
+                            <span class="cell-meal"
+                                >E | Assiettes repas salade de patates et
+                                thon</span
+                            >
+                            <span class="cell-dessert">Pomme</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >D | Burger de bœuf, sur pain naan…</span
+                            >
+                            <span class="cell-dessert">Banane</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >F | Omelette et mini crêpes</span
+                            >
+                            <span class="cell-dessert">Yaourt</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >G | Mini quiche sans croûte…</span
+                            >
+                            <span class="cell-dessert">Tarte aux fraises</span>
+                        </td>
+                    </tr>
+
+                    <!-- Zora Clarkson -->
+                    <tr>
+                        <td class="name-col">Zora Clarkson</td>
+                        <!-- <td class="group-col">Groupe 101 – Service 1</td> -->
+                        <td>
+                            <span class="cell-meal">—</span>
+                            <span class="cell-dessert">—</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal">—</span>
+                            <span class="cell-dessert">—</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >D | Burger de bœuf, sur pain naan…</span
+                            >
+                            <span class="cell-dessert">Yaourt</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal">E | Tofu général Tao</span>
+                            <span class="cell-dessert">Orange</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >D | Croquettes de poulet multigrains…</span
+                            >
+                            <span class="cell-dessert">Tarte aux pommes</span>
+                        </td>
+                    </tr>
+
+                    <!-- … ajoutez une ligne par personne … -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total des repas</strong></td>
+                        <td>0</td>
+                        <td>0 [+1]</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <section class="summary-section">
+                <div class="summary-section-header">
+                    <h2>Résumé par jour</h2>
+                    <span>Groupe 101 — Service 1</span>
+                </div>
+                <table class="summary">
+                    <thead>
+                        <tr>
+                            <th>Type / Jour</th>
+                            <th>Lundi 21</th>
+                            <th>Mardi 22</th>
+                            <th>Mercredi 23</th>
+                            <th>Jeudi 24</th>
+                            <th>Vendredi 25</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Section repas -->
+
+                        <tr>
+                            <td class="name-col">D | Plat du jour</td>
+                            <td>3 [+1]</td>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>1</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">E | Végétarien</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">F | Sans gluten</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">G | Autres choix</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+
+                        <!-- Section desserts -->
+                        <tr>
+                            <td class="name-col">Dessert | Banane</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">Dessert | Pomme</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <!-- … ajoutez une ligne par dessert différent … -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div class="page">
+            <header class="report-header">
+                <div class="report-info">
+                    <h1>Groupe 101 — Service 2</h1>
+                    <p class="report-week">
+                        Rapport de distribution semaine
+                        <strong>du 21 au 25 avril 2025</strong>
+                    </p>
+                </div>
+                <div class="report-meta">
+                    <p>Rapport généré le 18 avril 2025 à 10 :38</p>
+                    <p>Utilisateur : <strong>ABC12345</strong></p>
+                </div>
+            </header>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="name-col">Nom</th>
+                        <!-- <th class="group-col">Groupe / Service</th> -->
+                        <th>Lundi 21 avril</th>
+                        <th>Mardi 22 avril</th>
+                        <th>Mercredi 23 avril</th>
+                        <th>Jeudi 24 avril</th>
+                        <th>Vendredi 25 avril</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Jasper Bichard -->
+                    <tr>
+                        <td class="name-col">Jasper Bichard</td>
+                        <!-- <td class="group-col">Groupe 101 – Service 1</td> -->
+                        <td>
+                            <span class="cell-meal">—</span>
+                            <span class="cell-dessert">—</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal tag">PORTION PLUS</span>
+                            <span class="cell-meal"
+                                >E | Assiettes repas salade de patates et
+                                thon</span
+                            >
+                            <span class="cell-dessert">Pomme</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >D | Burger de bœuf, sur pain naan…</span
+                            >
+                            <span class="cell-dessert">Banane</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >F | Omelette et mini crêpes</span
+                            >
+                            <span class="cell-dessert">Yaourt</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >G | Mini quiche sans croûte…</span
+                            >
+                            <span class="cell-dessert">Tarte aux fraises</span>
+                        </td>
+                    </tr>
+
+                    <!-- Zora Clarkson -->
+                    <tr>
+                        <td class="name-col">Zora Clarkson</td>
+                        <!-- <td class="group-col">Groupe 101 – Service 1</td> -->
+                        <td>
+                            <span class="cell-meal">—</span>
+                            <span class="cell-dessert">—</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal">—</span>
+                            <span class="cell-dessert">—</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >D | Burger de bœuf, sur pain naan…</span
+                            >
+                            <span class="cell-dessert">Yaourt</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal">E | Tofu général Tao</span>
+                            <span class="cell-dessert">Orange</span>
+                        </td>
+                        <td>
+                            <span class="cell-meal"
+                                >D | Croquettes de poulet multigrains…</span
+                            >
+                            <span class="cell-dessert">Tarte aux pommes</span>
+                        </td>
+                    </tr>
+
+                    <!-- … ajoutez une ligne par personne … -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total des repas</strong></td>
+                        <td>0</td>
+                        <td>0 [+1]</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <section class="summary-section">
+                <div class="summary-section-header">
+                    <h2>Résumé par jour</h2>
+                    <span>Groupe 101 — Service 1</span>
+                </div>
+                <table class="summary">
+                    <thead>
+                        <tr>
+                            <th>Type / Jour</th>
+                            <th>Lundi 21</th>
+                            <th>Mardi 22</th>
+                            <th>Mercredi 23</th>
+                            <th>Jeudi 24</th>
+                            <th>Vendredi 25</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Section repas -->
+
+                        <tr>
+                            <td class="name-col">D | Plat du jour</td>
+                            <td>3 [+1]</td>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>1</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">E | Végétarien</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">F | Sans gluten</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">G | Autres choix</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+
+                        <!-- Section desserts -->
+                        <tr>
+                            <td class="name-col">Dessert | Banane</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td class="name-col">Dessert | Pomme</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <!-- … ajoutez une ligne par dessert différent … -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </body>
+</html>

@@ -1,10 +1,5 @@
 import { serve } from "bun";
 import puppeteer from "puppeteer";
-import {
-  renderProductionReport,
-  renderSchoolTable,
-  schoolMealProductionSeed,
-} from "./templater/production/production";
 
 console.log("started");
 serve({
@@ -14,19 +9,17 @@ serve({
 
     let templateFile: string | null = null;
     let landscape = true;
-    let html = "";
 
     if (url.pathname === "/") {
       templateFile = "./templates/production-template.html";
-      html = renderProductionReport(schoolMealProductionSeed);
     }
-    // if (url.pathname === "/distribution") {
-    //   templateFile = "./templates/distribution-template.html";
-    // }
-    // if (url.pathname === "/verification") {
-    //   templateFile = "./templates/verification-template.html";
-    //   landscape = false;
-    // }
+    if (url.pathname === "/distribution") {
+      templateFile = "./templates/distribution-template.html";
+    }
+    if (url.pathname === "/verification") {
+      templateFile = "./templates/verification-template.html";
+      landscape = false;
+    }
     // else if (url.pathname === "/with-header") {
     //   templateFile = "./distribution-template-with-header.html";
     // }
@@ -39,6 +32,7 @@ serve({
       });
 
       const page = await browser.newPage();
+      const html = await Bun.file(templateFile).text();
       await page.setContent(html, { waitUntil: "networkidle0" });
 
       const pdfBuffer = await page.pdf({
