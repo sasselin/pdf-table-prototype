@@ -1,14 +1,304 @@
 import { serve } from "bun";
 import puppeteer from "puppeteer";
 import {
-  renderProductionReport,
-  renderSchoolTable,
-  schoolMealProductionSeed,
+  GenerateCatererProductionReportCase,
+  SchoolMealProduction,
 } from "./templater/production/production";
+
+const pouletRoti = {
+  id: "poulet-roti",
+  type: "MAIN",
+  name: "Poulet rôtis",
+} as const;
+
+const sandwichPoulet = {
+  id: "sandwich-poulet",
+  type: "MAIN",
+  name: "Sandwich au poulet",
+} as const;
+
+const boulettesViande = {
+  id: "boulettesViande",
+  type: "MAIN",
+  name: "Boulettes a la viande",
+} as const;
+
+const macaroniFromage = {
+  id: "macaroniFromage",
+  type: "MAIN",
+  name: "Macaroni au fromage",
+} as const;
+
+const quicheLegumes = {
+  id: "quiche-legumes",
+  type: "MAIN",
+  name: "Quiche aux légumes",
+} as const;
+
+const chiliSinCarne = {
+  id: "chili-sin-carne",
+  type: "MAIN",
+  name: "Chili sin carne",
+} as const;
+
+const gratinDauphinois = {
+  id: "gratin-dauphinois",
+  type: "MAIN",
+  name: "Gratin dauphinois",
+} as const;
+
+const pizzaVegetarienne = {
+  id: "pizza-vegetarienne",
+  type: "MAIN",
+  name: "Pizza végétarienne",
+} as const;
+
+const tajinePoulet = {
+  id: "tajine-poulet",
+  type: "MAIN",
+  name: "Tajine de poulet",
+} as const;
+
+const curryLegumes = {
+  id: "curry-legumes",
+  type: "MAIN",
+  name: "Curry de légumes",
+} as const;
+
+const risottoChampignons = {
+  id: "risotto-champignons",
+  type: "MAIN",
+  name: "Risotto aux champignons",
+} as const;
+
+const omeletteFromage = {
+  id: "omelette-fromage",
+  type: "MAIN",
+  name: "Omelette au fromage",
+} as const;
+
+const paellaVegetarienne = {
+  id: "paella-vegetarienne",
+  type: "MAIN",
+  name: "Paëlla végétarienne",
+} as const;
+
+/// desserts
+
+const dessertGateauCarottes = {
+  id: "gateau-carottes",
+  type: "DESSERT",
+  name: "Gateaux au carottes",
+} as const;
+
+const dessertTartePommes = {
+  id: "tarte-pommes",
+  type: "DESSERT",
+  name: "Tarte aux pommes",
+} as const;
+
+const dessertMousseChocolat = {
+  id: "mousse-chocolat",
+  type: "DESSERT",
+  name: "Mousse au chocolat",
+} as const;
+
+const dessertCremeBrulee = {
+  id: "creme-brulee",
+  type: "DESSERT",
+  name: "Crème brûlée",
+} as const;
+
+const dessertClafoutisCerises = {
+  id: "clafoutis-cerises",
+  type: "DESSERT",
+  name: "Clafoutis aux cerises",
+} as const;
+
+const dessertRizAuLait = {
+  id: "riz-au-lait",
+  type: "DESSERT",
+  name: "Riz au lait",
+} as const;
+
+export const schoolMealProductionSeed: SchoolMealProduction[] = [
+  {
+    nameSchool: "École De la Rochebelle St‑Aimée du lac des signes",
+    nameWeek: "du 21 avril 2025 au 25 avril 2025",
+    days: [
+      { name: "Lundi", date: "2025-04-21", available: false },
+      { name: "Mercredi", date: "2025-04-23", available: true },
+      { name: "Vendredi", date: "2025-04-25", available: true },
+      { name: "Mardi", date: "2025-04-22", available: true },
+      { name: "Jeudi", date: "2025-04-24", available: true },
+    ],
+    groups: [
+      { id: "g0", name: "Aucun Groupe" },
+      { id: "g1", name: "Groupe des raisins" },
+    ],
+    meals: [
+      // Mardi 22 avril ========================================
+      // groupe 0
+      {
+        date: "2025-04-22",
+        groupId: "g0",
+        quantityRegular: 1,
+        quantityPortionPlus: 2,
+        ...pouletRoti,
+      },
+      {
+        date: "2025-04-22",
+        groupId: "g0",
+        quantityRegular: 10,
+        ...quicheLegumes,
+      },
+      {
+        date: "2025-04-22",
+        groupId: "g0",
+        quantityRegular: 100,
+        ...dessertGateauCarottes,
+      },
+      // groupe 1
+      {
+        date: "2025-04-22",
+        groupId: "g1",
+        quantityRegular: 2,
+        quantityPortionPlus: 2,
+        ...pouletRoti,
+      },
+      {
+        date: "2025-04-22",
+        groupId: "g1",
+        quantityRegular: 20,
+        ...quicheLegumes,
+      },
+      {
+        date: "2025-04-22",
+        groupId: "g1",
+        quantityRegular: 200,
+        ...dessertGateauCarottes,
+      },
+
+      // Mercredi 23 avril ========================================
+      {
+        date: "2025-04-23",
+        groupId: "g0",
+        quantityRegular: 3,
+        ...sandwichPoulet,
+      },
+      {
+        date: "2025-04-23",
+        groupId: "g0",
+        quantityRegular: 30,
+        ...chiliSinCarne,
+      },
+      {
+        date: "2025-04-23",
+        groupId: "g0",
+        quantityRegular: 300,
+        ...dessertTartePommes,
+      },
+      {
+        date: "2025-04-23",
+        groupId: "g1",
+        quantityRegular: 4,
+        ...sandwichPoulet,
+      },
+      {
+        date: "2025-04-23",
+        groupId: "g1",
+        quantityRegular: 40,
+        ...chiliSinCarne,
+      },
+      {
+        date: "2025-04-23",
+        groupId: "g1",
+        quantityRegular: 400,
+        ...dessertTartePommes,
+      },
+
+      // Jeudi 24 avril ========================================
+      {
+        date: "2025-04-24",
+        groupId: "g0",
+        quantityRegular: 5,
+        ...boulettesViande,
+      },
+      {
+        date: "2025-04-24",
+        groupId: "g0",
+        quantityRegular: 50,
+        ...gratinDauphinois,
+      },
+      {
+        date: "2025-04-24",
+        groupId: "g0",
+        quantityRegular: 500,
+        ...dessertTartePommes,
+      },
+      {
+        date: "2025-04-24",
+        groupId: "g1",
+        quantityRegular: 6,
+        ...boulettesViande,
+      },
+      {
+        date: "2025-04-24",
+        groupId: "g1",
+        quantityRegular: 60,
+        ...gratinDauphinois,
+      },
+      {
+        date: "2025-04-24",
+        groupId: "g1",
+        quantityRegular: 600,
+        ...dessertTartePommes,
+      },
+
+      // Vendredi 25 avril ========================================
+      {
+        date: "2025-04-25",
+        quantityRegular: 7,
+        groupId: "g0",
+        ...macaroniFromage,
+      },
+      {
+        date: "2025-04-25",
+        quantityRegular: 70,
+        groupId: "g0",
+        ...pizzaVegetarienne,
+      },
+      {
+        date: "2025-04-25",
+        quantityRegular: 700,
+        groupId: "g0",
+        ...dessertMousseChocolat,
+      },
+      {
+        date: "2025-04-25",
+        quantityRegular: 8,
+        groupId: "g1",
+        ...macaroniFromage,
+      },
+      {
+        date: "2025-04-25",
+        quantityRegular: 80,
+        groupId: "g1",
+        ...pizzaVegetarienne,
+      },
+      {
+        date: "2025-04-25",
+        quantityRegular: 800,
+        groupId: "g1",
+        ...dessertMousseChocolat,
+      },
+    ],
+  },
+];
 
 console.log("started");
 serve({
-  port: 3000,
+  port: 3001,
   async fetch(req) {
     const url = new URL(req.url);
 
@@ -18,7 +308,8 @@ serve({
 
     if (url.pathname === "/") {
       templateFile = "./templates/production-template.html";
-      html = renderProductionReport(schoolMealProductionSeed);
+      const generator = new GenerateCatererProductionReportCase();
+      html = generator.execute(schoolMealProductionSeed);
     }
     // if (url.pathname === "/distribution") {
     //   templateFile = "./templates/distribution-template.html";
