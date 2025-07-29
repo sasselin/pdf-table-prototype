@@ -1,6 +1,10 @@
+export type SchoolMealReportMetadata = {
+  generatedBy: string;
+  generatedAt: Date;
+};
+
 export type SchoolMealProduction = {
   nameSchool: string;
-  nameWeek: string;
   days: {
     name: string;
     date: string; // YYYY-MM-DD
@@ -28,13 +32,208 @@ type TableHeaderProps = {
 };
 
 export class GenerateCatererProductionReportCase {
-  execute(schools: SchoolMealProduction[]) {
+  execute(schools: SchoolMealProduction[], meta: SchoolMealReportMetadata) {
     let html = "";
+    html += this.reportTableContents(schools, meta);
+
     for (const school of schools) {
       const orderedSchool = this.orderSchoolMealProduction(school);
       html += this.renderSchoolTable(orderedSchool);
     }
     return this.header(html);
+  }
+
+  /**
+   * This generates the first table of the rapport, it contains
+   * the agglomerates of all schools
+   */
+  private reportTableContents(
+    schools: SchoolMealProduction[],
+    meta: SchoolMealReportMetadata,
+  ) {
+    const html = String.raw;
+
+    // key are always date
+    const mergedDays: Record<string, { name: string; available: boolean }> = {};
+    const uniqueMealsByDays: Record<
+      string,
+      Record<
+        string,
+        {
+          name: string;
+          type: "MAIN" | "DESSERT";
+          totalRegular: number;
+          totalPlus: number;
+        }
+      >
+    > = {};
+    // YYYY-MM-DD dates
+    const mergedDates: { date: string }[] = [];
+
+    const totalNonDessertByDay = (date: string) => {
+      let totalRegular = 0;
+      let totalPlus = 0;
+
+      for (const school of schools) {
+        for (const meal of school.meals) {
+          if (meal.date !== date) continue;
+          if (meal.type === "DESSERT") continue;
+          totalRegular += meal.quantityRegular;
+          totalPlus += meal.quantityPortionPlus || 0;
+        }
+      }
+
+      return {
+        regular: totalRegular,
+        plus: totalPlus,
+      };
+    };
+
+    for (const school of schools) {
+      const orderedSchool = this.orderSchoolMealProduction(school);
+
+      for (const meal of orderedSchool.meals) {
+        if (!uniqueMealsByDays[meal.date]) {
+          uniqueMealsByDays[meal.date] = {};
+        }
+        if (!uniqueMealsByDays[meal.date][meal.id]) {
+          uniqueMealsByDays[meal.date][meal.id] = {
+            name: meal.name,
+            type: meal.type,
+            totalRegular: meal.quantityRegular || 0,
+            totalPlus: meal.quantityPortionPlus || 0,
+          };
+          continue;
+        }
+
+        const quantityRegular = meal.quantityRegular || 0;
+        const quantityPlus = meal.quantityPortionPlus || 0;
+
+        uniqueMealsByDays[meal.date][meal.id] = {
+          name: meal.name,
+          type: meal.type,
+          totalRegular:
+            uniqueMealsByDays[meal.date][meal.id].totalRegular +
+            quantityRegular,
+          totalPlus:
+            uniqueMealsByDays[meal.date][meal.id].totalPlus + quantityPlus,
+        };
+      }
+
+      for (const day of orderedSchool.days) {
+        const matching = mergedDays[day.date];
+        mergedDates.push({ date: day.date });
+
+        if (!matching) {
+          mergedDays[day.date] = {
+            name: this.formatDate(day.date),
+            available: day.available,
+          };
+          continue;
+        }
+
+        // make sure that if one of the school is open it's displayed as open
+        if (!matching.available) {
+          mergedDays[day.date] = {
+            name: this.formatDate(day.date),
+            available: day.available,
+          };
+        }
+      }
+    }
+
+    const weekRangeLabel = this.weekRangeLabel(mergedDates);
+    const days = Object.entries(mergedDays);
+
+    return html`
+      <div class="page">
+        <h1>Rapport de Production (tous)</h1>
+        <div class="meta">
+          <strong>${weekRangeLabel}</strong><br />
+          ${this.generatedLabel(meta.generatedAt)}
+          <strong>${meta.generatedBy}</strong>
+        </div>
+
+        <table class="summary-table">
+          <!-- Prints the head of the table -->
+          <thead>
+            <tr>
+              <th class="day-header">Jour</th>
+              <th class="left">Menu</th>
+              <th class="left">Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- Prints vertical days -->
+            ${days
+              .map(([day, dayInfo]) => {
+                if (!dayInfo.available) {
+                  return `
+                   <tr class="day-closed">
+                     <td class="day-header">Lundi 21 avril 2025</td>
+                     <td colspan="2" class="left">Aucun service</td>
+                   </tr>
+                `;
+                }
+
+                const dayMeals = Object.values(uniqueMealsByDays[day]);
+
+                // Prints the first column with the name and the first meal
+                let content = dayMeals
+                  .map((m, i) => {
+                    if (i === 0) {
+                      return `
+                        <tr>
+                            <td rowspan="${dayMeals.length}" class="day-header">
+                               ${dayInfo.name}
+                            </td>
+                            <td class="left">
+                                ${m.name}
+                            </td>
+                            <td class="left">
+                                ${m.totalRegular}
+                                ${m.totalPlus > 0 ? `[+${m.totalPlus}]` : ""}
+                            </td>
+                        </tr>
+                        `;
+                    }
+
+                    // prints the other column with just the meal names
+                    return `
+                      <tr>
+                        <td class="left">
+                            ${m.name}
+                        </td>
+                        <td class="left">
+                            ${m.totalRegular}
+                            ${m.totalPlus > 0 ? `[+${m.totalPlus}]` : ""}
+                        </td>
+                      </tr>
+                      `;
+                  })
+                  .join("");
+
+                const dayTotalNoDessert = totalNonDessertByDay(day);
+
+                // Prints the day footer
+                content += `
+                  <tr class="day-total gray">
+                    <td colspan="2" class="right">Total (excluant dessert) pour ${dayInfo.name}</td>
+                    <td class="left">
+                        ${dayTotalNoDessert.regular}
+                        ${dayTotalNoDessert.plus > 0 ? `[+${dayTotalNoDessert.plus}]` : ""}
+                    </td>
+                  </tr>
+                  `;
+
+                return content;
+              })
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    `;
   }
 
   private tableContents(props: SchoolMealProduction) {
@@ -270,20 +469,22 @@ export class GenerateCatererProductionReportCase {
     return html`
       <h1>${props.nameSchool}</h1>
       <div class="meta">
-        Semaine: <strong>du ${props.nameWeek}</strong><br />
+        <strong>${props.nameWeek}</strong>
       </div>
     `;
   }
 
   private renderSchoolTable(school: SchoolMealProduction): string {
-    const { nameSchool, nameWeek } = school;
+    const { nameSchool, days } = school;
     let html = "";
 
     html += `<div class="page">`;
 
+    const weekRangeLabel = this.weekRangeLabel(days);
+
     html += this.tableTitle({
       nameSchool: nameSchool,
-      nameWeek: nameWeek,
+      nameWeek: weekRangeLabel,
     });
 
     html += `<table class="by-school">`;
@@ -347,6 +548,41 @@ export class GenerateCatererProductionReportCase {
       days,
       meals,
     };
+  }
+
+  private generatedLabel = (date: Date) =>
+    `Rapport généré le ${date.toLocaleDateString("fr", {
+      hour: "numeric",
+      minute: "numeric",
+    })} par`;
+
+  private weekRangeLabel(days: { date: string }[]): string {
+    if (days.length === 0) {
+      return "Semaine : du — au —";
+    }
+
+    // Extract just the ISO dates
+    const isoDates = days.map((d) => d.date);
+
+    // Find min/max by lexicographic order on YYYY‑MM‑DD
+    const sorted = isoDates.slice().sort();
+    const first = sorted[0];
+    const last = sorted[sorted.length - 1];
+
+    // Format "YYYY-MM-DD" → "21 avril 2025"
+    const fmt = (iso: string) => {
+      const [year, month, day] = iso.split("-").map(Number);
+      // Use UTC so that local TZ doesn’t shift the day
+      const dt = new Date(Date.UTC(year, month - 1, day));
+      return dt.toLocaleDateString("fr", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        timeZone: "UTC",
+      });
+    };
+
+    return `Semaine : du ${fmt(first)} au ${fmt(last)}`;
   }
 
   private header(body: string) {

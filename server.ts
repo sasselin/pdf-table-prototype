@@ -121,179 +121,182 @@ const dessertRizAuLait = {
   name: "Riz au lait",
 } as const;
 
+const example = {
+  nameSchool: "École De la Rochebelle St‑Aimée du lac des signes",
+  nameWeek: "du 21 avril 2025 au 25 avril 2025",
+  days: [
+    { name: "Lundi", date: "2025-04-21", available: false },
+    { name: "Mercredi", date: "2025-04-23", available: true },
+    { name: "Mardi", date: "2025-04-22", available: true },
+    { name: "Jeudi", date: "2025-04-24", available: true },
+    { name: "Vendredi", date: "2025-04-25", available: true },
+  ],
+  groups: [
+    { id: "g0", name: "Aucun Groupe" },
+    { id: "g1", name: "Groupe des raisins" },
+  ],
+  meals: [
+    // Mardi 22 avril ========================================
+    // groupe 0
+    {
+      date: "2025-04-22",
+      groupId: "g0",
+      quantityRegular: 1,
+      quantityPortionPlus: 2,
+      ...pouletRoti,
+    },
+    {
+      date: "2025-04-22",
+      groupId: "g0",
+      quantityRegular: 10,
+      ...quicheLegumes,
+    },
+    {
+      date: "2025-04-22",
+      groupId: "g0",
+      quantityRegular: 100,
+      ...dessertGateauCarottes,
+    },
+    // groupe 1
+    {
+      date: "2025-04-22",
+      groupId: "g1",
+      quantityRegular: 2,
+      quantityPortionPlus: 2,
+      ...pouletRoti,
+    },
+    {
+      date: "2025-04-22",
+      groupId: "g1",
+      quantityRegular: 20,
+      ...quicheLegumes,
+    },
+    {
+      date: "2025-04-22",
+      groupId: "g1",
+      quantityRegular: 200,
+      ...dessertGateauCarottes,
+    },
+
+    // Mercredi 23 avril ========================================
+    {
+      date: "2025-04-23",
+      groupId: "g0",
+      quantityRegular: 3,
+      ...sandwichPoulet,
+    },
+    {
+      date: "2025-04-23",
+      groupId: "g0",
+      quantityRegular: 30,
+      ...chiliSinCarne,
+    },
+    {
+      date: "2025-04-23",
+      groupId: "g0",
+      quantityRegular: 300,
+      ...dessertTartePommes,
+    },
+    {
+      date: "2025-04-23",
+      groupId: "g1",
+      quantityRegular: 4,
+      ...sandwichPoulet,
+    },
+    {
+      date: "2025-04-23",
+      groupId: "g1",
+      quantityRegular: 40,
+      ...chiliSinCarne,
+    },
+    {
+      date: "2025-04-23",
+      groupId: "g1",
+      quantityRegular: 400,
+      ...dessertTartePommes,
+    },
+
+    // Jeudi 24 avril ========================================
+    {
+      date: "2025-04-24",
+      groupId: "g0",
+      quantityRegular: 5,
+      ...boulettesViande,
+    },
+    {
+      date: "2025-04-24",
+      groupId: "g0",
+      quantityRegular: 50,
+      ...gratinDauphinois,
+    },
+    {
+      date: "2025-04-24",
+      groupId: "g0",
+      quantityRegular: 500,
+      ...dessertTartePommes,
+    },
+    {
+      date: "2025-04-24",
+      groupId: "g1",
+      quantityRegular: 6,
+      ...boulettesViande,
+    },
+    {
+      date: "2025-04-24",
+      groupId: "g1",
+      quantityRegular: 60,
+      ...gratinDauphinois,
+    },
+    {
+      date: "2025-04-24",
+      groupId: "g1",
+      quantityRegular: 600,
+      ...dessertTartePommes,
+    },
+
+    // Vendredi 25 avril ========================================
+    {
+      date: "2025-04-25",
+      quantityRegular: 7,
+      groupId: "g0",
+      ...macaroniFromage,
+    },
+    {
+      date: "2025-04-25",
+      quantityRegular: 70,
+      groupId: "g0",
+      ...pizzaVegetarienne,
+    },
+    {
+      date: "2025-04-25",
+      quantityRegular: 700,
+      groupId: "g0",
+      ...dessertMousseChocolat,
+    },
+    {
+      date: "2025-04-25",
+      quantityRegular: 8,
+      groupId: "g1",
+      ...macaroniFromage,
+    },
+    {
+      date: "2025-04-25",
+      quantityRegular: 80,
+      groupId: "g1",
+      ...pizzaVegetarienne,
+    },
+    {
+      date: "2025-04-25",
+      quantityRegular: 800,
+      groupId: "g1",
+      ...dessertMousseChocolat,
+    },
+  ],
+};
+
 export const schoolMealProductionSeed: SchoolMealProduction[] = [
-  {
-    nameSchool: "École De la Rochebelle St‑Aimée du lac des signes",
-    nameWeek: "du 21 avril 2025 au 25 avril 2025",
-    days: [
-      { name: "Lundi", date: "2025-04-21", available: false },
-      { name: "Mercredi", date: "2025-04-23", available: true },
-      { name: "Vendredi", date: "2025-04-25", available: true },
-      { name: "Mardi", date: "2025-04-22", available: true },
-      { name: "Jeudi", date: "2025-04-24", available: true },
-    ],
-    groups: [
-      { id: "g0", name: "Aucun Groupe" },
-      { id: "g1", name: "Groupe des raisins" },
-    ],
-    meals: [
-      // Mardi 22 avril ========================================
-      // groupe 0
-      {
-        date: "2025-04-22",
-        groupId: "g0",
-        quantityRegular: 1,
-        quantityPortionPlus: 2,
-        ...pouletRoti,
-      },
-      {
-        date: "2025-04-22",
-        groupId: "g0",
-        quantityRegular: 10,
-        ...quicheLegumes,
-      },
-      {
-        date: "2025-04-22",
-        groupId: "g0",
-        quantityRegular: 100,
-        ...dessertGateauCarottes,
-      },
-      // groupe 1
-      {
-        date: "2025-04-22",
-        groupId: "g1",
-        quantityRegular: 2,
-        quantityPortionPlus: 2,
-        ...pouletRoti,
-      },
-      {
-        date: "2025-04-22",
-        groupId: "g1",
-        quantityRegular: 20,
-        ...quicheLegumes,
-      },
-      {
-        date: "2025-04-22",
-        groupId: "g1",
-        quantityRegular: 200,
-        ...dessertGateauCarottes,
-      },
-
-      // Mercredi 23 avril ========================================
-      {
-        date: "2025-04-23",
-        groupId: "g0",
-        quantityRegular: 3,
-        ...sandwichPoulet,
-      },
-      {
-        date: "2025-04-23",
-        groupId: "g0",
-        quantityRegular: 30,
-        ...chiliSinCarne,
-      },
-      {
-        date: "2025-04-23",
-        groupId: "g0",
-        quantityRegular: 300,
-        ...dessertTartePommes,
-      },
-      {
-        date: "2025-04-23",
-        groupId: "g1",
-        quantityRegular: 4,
-        ...sandwichPoulet,
-      },
-      {
-        date: "2025-04-23",
-        groupId: "g1",
-        quantityRegular: 40,
-        ...chiliSinCarne,
-      },
-      {
-        date: "2025-04-23",
-        groupId: "g1",
-        quantityRegular: 400,
-        ...dessertTartePommes,
-      },
-
-      // Jeudi 24 avril ========================================
-      {
-        date: "2025-04-24",
-        groupId: "g0",
-        quantityRegular: 5,
-        ...boulettesViande,
-      },
-      {
-        date: "2025-04-24",
-        groupId: "g0",
-        quantityRegular: 50,
-        ...gratinDauphinois,
-      },
-      {
-        date: "2025-04-24",
-        groupId: "g0",
-        quantityRegular: 500,
-        ...dessertTartePommes,
-      },
-      {
-        date: "2025-04-24",
-        groupId: "g1",
-        quantityRegular: 6,
-        ...boulettesViande,
-      },
-      {
-        date: "2025-04-24",
-        groupId: "g1",
-        quantityRegular: 60,
-        ...gratinDauphinois,
-      },
-      {
-        date: "2025-04-24",
-        groupId: "g1",
-        quantityRegular: 600,
-        ...dessertTartePommes,
-      },
-
-      // Vendredi 25 avril ========================================
-      {
-        date: "2025-04-25",
-        quantityRegular: 7,
-        groupId: "g0",
-        ...macaroniFromage,
-      },
-      {
-        date: "2025-04-25",
-        quantityRegular: 70,
-        groupId: "g0",
-        ...pizzaVegetarienne,
-      },
-      {
-        date: "2025-04-25",
-        quantityRegular: 700,
-        groupId: "g0",
-        ...dessertMousseChocolat,
-      },
-      {
-        date: "2025-04-25",
-        quantityRegular: 8,
-        groupId: "g1",
-        ...macaroniFromage,
-      },
-      {
-        date: "2025-04-25",
-        quantityRegular: 80,
-        groupId: "g1",
-        ...pizzaVegetarienne,
-      },
-      {
-        date: "2025-04-25",
-        quantityRegular: 800,
-        groupId: "g1",
-        ...dessertMousseChocolat,
-      },
-    ],
-  },
+  example,
+  { ...example, nameSchool: "exemple 2" },
 ];
 
 console.log("started");
@@ -309,7 +312,10 @@ serve({
     if (url.pathname === "/") {
       templateFile = "./templates/production-template.html";
       const generator = new GenerateCatererProductionReportCase();
-      html = generator.execute(schoolMealProductionSeed);
+      html = generator.execute(schoolMealProductionSeed, {
+        generatedAt: new Date(),
+        generatedBy: "Monsieur leTest",
+      });
     }
     // if (url.pathname === "/distribution") {
     //   templateFile = "./templates/distribution-template.html";
