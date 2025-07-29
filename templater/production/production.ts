@@ -173,7 +173,7 @@ export class GenerateCatererProductionReportCase {
                 if (!dayInfo.available) {
                   return `
                    <tr class="day-closed">
-                     <td class="day-header">Lundi 21 avril 2025</td>
+                     <td class="day-header">${dayInfo.name}</td>
                      <td colspan="2" class="left">Aucun service</td>
                    </tr>
                 `;
