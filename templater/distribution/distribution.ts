@@ -28,18 +28,19 @@ export type SchoolDistributionGroup = {
   service?: string;
 };
 
+// @TODO MOVE SIMILAR FUNCTIONS TO HELPERS
 export const schoolDistributionPayload: SchoolDistributionPayload = {
   generatedAt: new Date(),
   generatedBy: "Monsieur test",
   groups: [
     { id: "g0", name: "Aucun Groupe", service: "1" },
-    { id: "g0", name: "Groupe des raisins", service: "2" },
+    { id: "g1", name: "Groupe des raisins", service: "2" },
   ],
   days: [
     { date: "2025-04-21", available: false, incomplete: false },
-    { date: "2025-04-22", available: true, incomplete: false },
     { date: "2025-04-23", available: true, incomplete: false },
     { date: "2025-04-24", available: true, incomplete: false },
+    { date: "2025-04-22", available: true, incomplete: false },
     { date: "2025-04-25", available: true, incomplete: true },
   ],
   meals: [
@@ -71,9 +72,10 @@ export const schoolDistributionPayload: SchoolDistributionPayload = {
 export class GenerateDistributionReportCase {
   execute(payload: SchoolDistributionPayload) {
     let content = ``;
+    const orderedPayload = this.orderDistribution(payload);
 
-    for (const group of payload.groups) {
-      content += this.tableContent(group, payload);
+    for (const group of orderedPayload.groups) {
+      content += this.tableContent(group, orderedPayload);
     }
 
     return this.head(content);
@@ -98,18 +100,38 @@ export class GenerateDistributionReportCase {
         (meal) =>
           meal.beneficiaryId === beneficiaryId &&
           meal.date === date &&
-          meal.service === group.service &&
           meal.groupId === group.id,
       );
 
       return match;
     };
 
+    const getTotalForDay = (date: string, groupId: string) => {
+      const dayMeals = payload.meals.filter(
+        (m) => m.date === date && m.groupId === groupId,
+      );
+      let totalRegular = 0;
+      let totalPlus = 0;
+
+      for (const meal of dayMeals) {
+        if (meal.portionPlus) {
+          totalPlus++;
+          continue;
+        }
+        totalRegular++;
+      }
+
+      return {
+        regular: totalRegular,
+        plus: totalPlus,
+      };
+    };
+
     // id + string map
     const uniqueBeneficiaryInGroup = new Map<string, string>();
 
     for (let order of payload.meals) {
-      if (order.groupId !== group.id && order.service !== group.service) {
+      if (order.groupId !== group.id) {
         continue;
       }
       uniqueBeneficiaryInGroup.set(order.beneficiaryId, order.nameBeneficiary);
@@ -136,10 +158,7 @@ export class GenerateDistributionReportCase {
       </header>
       ${containsIncomplete
         ? `
-        <p
-            title="Attention : données incomplètes"
-            style="color: #b00; font-size: 10px; vertical-align: middle"
-        >
+        <p class="incomplete">
             ${"&#9888; Incomplet, des commandes peuvent encore être effectués dans les journées identifiées."}
         </p>
         `
@@ -162,14 +181,7 @@ export class GenerateDistributionReportCase {
               return `
                 <th>
                 ${this.formatDate(day.date)}
-                    <span
-                        title="Attention : données incomplètes"
-                        style="
-                        color: #b00;
-                        font-size: 9px;
-                        vertical-align: middle;
-                        "
-                    >
+                    <span class="incomplete-icon">
                         &#9888; incomplet
                     </span>
                 </th>
@@ -179,6 +191,8 @@ export class GenerateDistributionReportCase {
         </tr>
       </thead>
     `;
+
+    content += "<tbody>";
 
     // This generates each beneficiary week order
     content += beneficiaries
@@ -215,6 +229,27 @@ export class GenerateDistributionReportCase {
         `;
       })
       .join("");
+
+    content += "</tbody>";
+
+    content += html`
+      <tfoot>
+        <tr>
+          <td><strong>Total des repas</strong></td>
+          ${payload.days
+            .map((d) => {
+              const count = getTotalForDay(d.date, group.id);
+              return `
+                <td>
+                    ${count.regular}
+                    ${count.plus > 0 ? `[+${count.plus}]` : ""}
+                </td>
+            `;
+            })
+            .join("")}
+        </tr>
+      </tfoot>
+    `;
 
     content += "</table>";
     content += html`</div>`;
@@ -269,6 +304,39 @@ export class GenerateDistributionReportCase {
     };
 
     return `Semaine : du ${fmt(first)} au ${fmt(last)}`;
+  }
+
+  // Not the same ordering do not copy for both
+  private orderDistribution(
+    input: SchoolDistributionPayload,
+  ): SchoolDistributionPayload {
+    // sort days by date
+    const days = [...input.days].sort((a, b) => a.date.localeCompare(b.date));
+
+    // build group‐order lookup (groups in order, then '+' at the end)
+    const groupOrder = input.groups.map((g) => g.id).concat("+");
+    const groupIndex = (id: string) =>
+      groupOrder.indexOf(id) >= 0 ? groupOrder.indexOf(id) : groupOrder.length;
+
+    // define type order
+    const typeOrder: Record<"MAIN" | "DESSERT", number> = {
+      MAIN: 0,
+      DESSERT: 1,
+    };
+
+    // sort meals by (date, type, group)
+    const meals = [...input.meals].sort((a, b) => {
+      const d = a.date.localeCompare(b.date);
+      if (d !== 0) return d;
+      return groupIndex(a.groupId) - groupIndex(b.groupId);
+    });
+
+    // return a new object
+    return {
+      ...input,
+      days,
+      meals,
+    };
   }
 
   /** Generates the document styles and headers */
@@ -394,6 +462,16 @@ export class GenerateDistributionReportCase {
               background: #eef;
               padding: 2px 6px;
               border-radius: 4px;
+            }
+            .incomplete {
+              color: #b00;
+              font-size: 10px;
+              vertical-align: middle;
+            }
+            .incomplete-icon {
+              color: #b00;
+              font-size: 9px;
+              vertical-align: middle;
             }
           </style>
         </head>
