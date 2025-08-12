@@ -10,6 +10,8 @@ import {
   schoolDistributionPayload,
   schoolDistributionPayloadSeed,
 } from "./templater/distribution/distribution";
+import { GenerateVerificationReport } from "./templater/verification/verification";
+import { schoolVerificationSeed } from "./templater/verification/seed";
 
 console.log("started");
 serve({
@@ -32,10 +34,14 @@ serve({
       const generator = new GenerateDistributionReportCase();
       html = generator.execute(schoolDistributionPayload);
     }
-    // if (url.pathname === "/verification") {
-    //   templateFile = "./templates/verification-template.html";
-    //   landscape = false;
-    // }
+    if (url.pathname === "/verification") {
+      const generator = new GenerateVerificationReport();
+      html = generator.execute(schoolVerificationSeed, {
+        generatedAt: new Date(),
+        generatedBy: "Monsieur leTest",
+      });
+      landscape = false;
+    }
 
     if (html) {
       const browser = await puppeteer.launch({
